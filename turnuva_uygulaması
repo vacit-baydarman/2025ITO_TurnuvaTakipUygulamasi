@@ -1,0 +1,448 @@
+import random
+import time
+
+# Global veriler
+oyuncu_listesi = []
+mac_rakip1 = []
+mac_rakip2 = []
+mac_rakip1_gol = []
+mac_rakip2_gol = []
+puan_listesi = {}
+gol_listesi = {}
+
+
+# ─── 1254 ──────────────────────────────────────────────
+def turnuva_logo():
+    print("******************************************************************************************************")
+    print("*                                                                              *                     *")
+    print("*   _____ _______ ____    _______ _    _ _____  _   _ _    ___      __        *     İTO ÖĞRENCİLERİ  *  ")
+    print("*  |_   _|__   __/ __ \  |__   __| |  | |  __ \| \ | | |  | \ \    / /\      *       KAPIŞIYORLAR    *  ")
+    print("*    | |    | | | |  | |    | |  | |  | | |__) |  \| | |  | |\ \  / /  \    *                        *")
+    print("*    | |    | | | |  | |    | |  | |  | |  _  /| . ` | |  | | \ \/ / /\ \    *   TURNUVANIN KAZANANI *")
+    print("*   _| |_   | | | |__| |    | |  | |__| | | \ \| |\  | |__| |  \  / ____ \    *       KİM OLACAK?    *")
+    print("*  |_____|  |_|  \____/     |_|   \____/|_|  \_\_| \_|\____/    \/_/    \_\    *                     *")
+    print("*                                                                               *                    *")
+    print("****************************************************************************************************** ")
+
+
+# ─── 1161 ──────────────────────────────────────────────
+def turnuva_giris():
+    print("       *      *********************          ****           ")
+    print("                       **                  ********         ")
+    print("       *               **                ****    ****       ")
+    print("       *               **              ****        ****     ")
+    print("       *               **            ****            ****   ")
+    print("       *               **           ****              ****  ")
+    print("       *               **            ****            ****   ")
+    print("       *               **              ****        ****     ")
+    print("       *               **                ****    ****       ")
+    print("       *               **                  ********         ")
+    print("       *               **                    ****           ")
+    print("")
+    print("  ***        *          *     *  *       *       **             ")
+    print(" *   *      * *        * *       *       *     ******           ")
+    print("*     *     * *        * *    *  *       *    ***  ***    ")
+    print(" *         *   *      *   *   *  *       *   ***    ***     ")
+    print("  *        *   *      *   *   *  *       *  ***      ***        ")
+    print("   *      *******    *******  *  *********  ***      ***            ")
+    print("*     *   *     *    *     *  *  *       *   ***    ***        ")
+    print(" *   *   *       *  *       * *  *       *    ***  ***        ")
+    print("  ***    *       *  *       * *  *       *     ******        ")
+    print("   *     *       *  *       * *  *       *        * * *  ")
+    print("")
+    print(" *   *   *     ***** * *     * **   **      *     * * *       ")
+    print("  * *   * *       *  * *     * * * * *     ***    * * *     ")
+    print("   *   *   *     *   * *     * *  *  *   *******  * * *       ")
+    print("   *  *******   *    * *     * *     *    *****                ")
+    print("   *  *     *  ***** * ***** * *     *    ** **   * * *                    ")
+    print("")
+    print("*********** *      *  ***     **      * *      * *       *   **      ***     **      *     **    ")
+    print("     *      *      *  *   *   * *     * *      * *       *  *  *    *   *  * * *     *    *  *                       ")
+    print("     *      *      *  *    *  *  *    * *      *  *     *  *    *      *   * *  *    *   *    *                ")
+    print("     *      *      *  *  *    *   *   * *      *   *   *   ******     *    * *   *   *   ******               ")
+    print("     *      *      *  **      *    *  * *      *   *   *   *    *    *     * *    *  *   *    *                    ")
+    print("     *      *      *  * *     *     * * *      *    * *   *      *  *   *  * *     * *  *      *                  ")
+    print("     *       ******   *  *    *      **  ******      *    *      *   ***   * *      **  *      *            ")
+    print("")
+    print("*          *      **       *****         ****       ************ *             ***       *  **          * * ***********                                                                            ")
+    print("*          *     *  *     *     *       *    *      *            *             *  **        * *         *            *                                                 ")
+    print("*          *    *    *     *           *      *     *            *             *   **    *  *  *        * *         *                                                ")
+    print("*          *   *      *     *         *        *    *            *             *    **   *  *   *       * *        *                                                         ")
+    print("*          *  *        *     *       *              *            *             *     **  *  *    *      * *       *                                           ")
+    print("************ *          *     *     *        ****   *******      *             *      ** *  *     *     * *      *                                                               ")
+    print("*          *  *        *       *     *          *   *            *             *     **  *  *      *    * *     *                                                             ")
+    print("*          *   *      *         *     *        *    *            *             *    **   *  *       *   * *    *                                                         ")
+    print("*          *    *    *     *     *     *      *     *            *             *   **    *  *        *  * *   *                                                            ")
+    print("*          *     *  *       *****       *    *      *            *             *  **     *  *         * * *  *                                                              ")
+    print("*          *      **         *           ****       ************ ************* ***       *  *          ** * ***********                                                                                         ")
+
+
+# ─── 1254 ──────────────────────────────────────────────
+def menu_goster():
+    print("*****************************************************  ")
+    print("*   ____________     ____________     ____________  * ")
+    print("*  |  1-Oyuncu  |   | 2-Oyuncu   |   |  3-Oyuncu  | *  ")
+    print("*  |   ekle     |   |   sil      |   |  güncelle  | *  ")
+    print("*  |____________|   |____________|   |____________| *  ")
+    print("*                                                   * ")
+    print("*   ____________     ____________     ____________  * ")
+    print("*  |  4-Oyuncu  |   |5-Eşleştir- |   |6-Puan tab- | * ")
+    print("*  |listesi gstr|   |meleri gstr |   |losu göster | *  ")
+    print("*  |____________|   |____________|   |____________| *  ")
+    print("*                                                   *  ")
+    print("*   ____________     ____________     ____________  *  ")
+    print("*  |7-Eşleştir- |   |8-Puan tab- |   |  9-En iyi  | *  ")
+    print("*  |meleri olstr|   |losu gncll  |   |    golcu   | *  ")
+    print("*  |____________|   |____________|   |____________| *  ")
+    print("*                                                   *   ")
+    print("*   ____________     ____________     ____________  *  ")
+    print("*  | 10-Mac     |   | 11-Kura    |   | 12-Oyuncu  | *  ")
+    print("*  |  baslat    |   |    cek     |   |   arama    | *  ")
+    print("*  |____________|   |____________|   |____________| *  ")
+    print("*                                                   *   ")
+    print("*   ____________     ____________                   *  ")
+    print("*  | 13-Turnuva |   | 0-Cikis    |                 *  ")
+    print("*  |   ozeti    |   |            |                 *  ")
+    print("*  |____________|   |____________|                 *  ")
+    print("*                                                   *     ")
+    print("*****************************************************")
+
+
+# ─── 1018 ──────────────────────────────────────────────
+def oyuncu_arama(oyuncu_ismi):
+    for i, oyuncu in enumerate(oyuncu_listesi):
+        if oyuncu_ismi == oyuncu:
+            return i
+    return -1
+
+
+# ─── 1009 ──────────────────────────────────────────────
+def oyuncu_ekle():
+    print("Python Oyuncu Eklemeye hos geldiniz.")
+    oyuncu_adi_soyadi = input("Eklenecek oyuncunun adi: ")
+    if oyuncu_arama(oyuncu_adi_soyadi) != -1:
+        print("Listede olan bir isim girdiniz.")
+        return
+    oyuncu_listesi.append(oyuncu_adi_soyadi)
+    puan_listesi[oyuncu_adi_soyadi] = 0
+    gol_listesi[oyuncu_adi_soyadi] = 0
+    print(oyuncu_adi_soyadi + " eklendi.")
+
+
+# ─── 1115 ──────────────────────────────────────────────
+def oyuncu_listesi_goster():
+    print("╔═══════════✦❖✦═══════════╗")
+    print("   ✦ ─── Oyuncu Listesi ─── ✦")
+    if not oyuncu_listesi:
+        print("   Henuz oyuncu eklenmedi.")
+    for oyuncu in oyuncu_listesi:
+        print("   " + oyuncu)
+    print("╚═══════════✦❖✦═══════════╝")
+
+
+# ─── 1206 ──────────────────────────────────────────────
+def oyuncu_sil():
+    oyuncu_listesi_goster()
+    silinecek_oyuncu = input("Silinecek oyuncunun adi: ")
+    if oyuncu_arama(silinecek_oyuncu) == -1:
+        print("Boyle bir oyuncu bulunamadi.")
+        return
+    oyuncu_listesi.remove(silinecek_oyuncu)
+    if silinecek_oyuncu in puan_listesi:
+        del puan_listesi[silinecek_oyuncu]
+    if silinecek_oyuncu in gol_listesi:
+        del gol_listesi[silinecek_oyuncu]
+    print(silinecek_oyuncu + " silindi.")
+
+
+# ─── 1238 + 1071 ──────────────────────────────────────────────
+def oyuncu_guncelle():
+    oyuncu_listesi_goster()
+    eski_oyuncu = input("Guncellenecek oyuncunun adi: ")
+    oyuncu_sirasi = oyuncu_arama(eski_oyuncu)
+    if oyuncu_sirasi == -1:
+        print("Boyle bir oyuncu bulunamadi.")
+        return
+    yeni_isim = input("Yeni isim: ")
+    oyuncu_listesi[oyuncu_sirasi] = yeni_isim
+    if eski_oyuncu in puan_listesi:
+        puan_listesi[yeni_isim] = puan_listesi.pop(eski_oyuncu)
+    if eski_oyuncu in gol_listesi:
+        gol_listesi[yeni_isim] = gol_listesi.pop(eski_oyuncu)
+    print("oyuncunuzun yeni adi: " + yeni_isim)
+
+
+# ─── 1018 ──────────────────────────────────────────────
+def kura_cek():
+    if not oyuncu_listesi:
+        return None
+    return random.choice(oyuncu_listesi)
+
+
+# ─── 1018 ──────────────────────────────────────────────
+def eslestirmeleri_olustur():
+    global mac_rakip1, mac_rakip2, mac_rakip1_gol, mac_rakip2_gol
+    if len(oyuncu_listesi) < 2:
+        print("En az 2 oyuncu gerekli.")
+        return
+    mac_rakip1 = []
+    mac_rakip2 = []
+    mac_rakip1_gol = []
+    mac_rakip2_gol = []
+    kullanilan = []
+    oyuncular = oyuncu_listesi[:]
+    random.shuffle(oyuncular)
+    for i in range(0, len(oyuncular) - 1, 2):
+        mac_rakip1.append(oyuncular[i])
+        mac_rakip2.append(oyuncular[i + 1])
+        mac_rakip1_gol.append(0)
+        mac_rakip2_gol.append(0)
+    print("Eslestirmeler olusturuldu.")
+
+
+# ─── 1142 ──────────────────────────────────────────────
+def eslestirmeleri_goster():
+    if not mac_rakip1:
+        print("Henuz eslestirme olusturulmadi.")
+        return
+    print("--- Eslestirmeler ---")
+    for i in range(len(mac_rakip1)):
+        print(str(i + 1) + ". Mac: " + mac_rakip1[i] + "  vs  " + mac_rakip2[i])
+
+
+# ─── Ahmet Zafer (gol animasyonu) ──────────────────────────────────────────────
+def gol_animasyonu():
+    print("")
+    print("************************")
+    print("*")
+    print("*")
+    print("*")
+    print("*")
+    print("*")
+    print("*")
+    print("*")
+    print("*")
+    print("*            ***********")
+    print("*                      *")
+    print("*                      *")
+    print("***********************")
+    print("")
+    print("***********************")
+    print("*                     *")
+    print("*                     *")
+    print("*                     *")
+    print("*                     *")
+    print("*                     *")
+    print("*                     *")
+    print("*                     *")
+    print("*                     *")
+    print("*                     *")
+    print("*                     *")
+    print("*                     *")
+    print("***********************")
+    print("")
+    print("*")
+    print("*")
+    print("*")
+    print("*")
+    print("*")
+    print("*")
+    print("*")
+    print("*")
+    print("*")
+    print("*")
+    print("*")
+    print("*")
+    print("*")
+    print("*************************")
+    print("          G O L !")
+    print("")
+
+
+# ─── skor_güncelle (no number - duzeltildi) ────────────────────────────
+def skor_guncelle(mac_index, atan_taraf):
+    # atan_taraf: 1 = rakip1, 2 = rakip2
+    if atan_taraf == 1:
+        mac_rakip1_gol[mac_index] += 1
+        gol_listesi[mac_rakip1[mac_index]] = gol_listesi.get(mac_rakip1[mac_index], 0) + 1
+    elif atan_taraf == 2:
+        mac_rakip2_gol[mac_index] += 1
+        gol_listesi[mac_rakip2[mac_index]] = gol_listesi.get(mac_rakip2[mac_index], 0) + 1
+    gol_animasyonu()
+    skor_goster(mac_index)
+
+
+# ─── 1161 ──────────────────────────────────────────────
+def skor_goster(mac_index):
+    print(mac_rakip1[mac_index] + " " + str(mac_rakip1_gol[mac_index]) + " - " + str(mac_rakip2_gol[mac_index]) + " " + mac_rakip2[mac_index])
+
+
+# ─── 1071 ──────────────────────────────────────────────
+def mac_baslat():
+    eslestirmeleri_goster()
+    if not mac_rakip1:
+        return
+    try:
+        mac_no = int(input("Hangi mac oynanacak (numara): ")) - 1
+    except ValueError:
+        print("Gecersiz giris.")
+        return
+    if mac_no < 0 or mac_no >= len(mac_rakip1):
+        print("Gecersiz mac numarasi.")
+        return
+
+    mac_rakip1_gol[mac_no] = 0
+    mac_rakip2_gol[mac_no] = 0
+    print("tum seyirciler " + str(mac_no + 1) + ". mac derbisinin baslamasini bekliyor iyi seyirler")
+    print(mac_rakip1[mac_no] + " vs " + mac_rakip2[mac_no])
+
+    while True:
+        print("")
+        print("Gol atan taraf?")
+        print("  1 - " + mac_rakip1[mac_no])
+        print("  2 - " + mac_rakip2[mac_no])
+        print("  3 - Mac bitti")
+        secim = input("Secim: ")
+        if secim == "1":
+            skor_guncelle(mac_no, 1)
+        elif secim == "2":
+            skor_guncelle(mac_no, 2)
+        elif secim == "3":
+            mac_bitir(mac_no)
+            break
+        else:
+            print("Gecersiz secim.")
+
+
+# ─── mac_bitir ──────────────────────────────────────────────
+def mac_bitir(mac_no):
+    r1_gol = mac_rakip1_gol[mac_no]
+    r2_gol = mac_rakip2_gol[mac_no]
+    print("")
+    print("=== Mac Bitti ===")
+    print(mac_rakip1[mac_no] + " " + str(r1_gol) + " - " + str(r2_gol) + " " + mac_rakip2[mac_no])
+    if r1_gol > r2_gol:
+        print("Kazanan: " + mac_rakip1[mac_no])
+        puan_tablosu_guncelle(mac_no, 1)
+    elif r2_gol > r1_gol:
+        print("Kazanan: " + mac_rakip2[mac_no])
+        puan_tablosu_guncelle(mac_no, 2)
+    else:
+        print("Mac berabere bitti.")
+        puan_tablosu_guncelle(mac_no, 0)
+
+
+# ─── 1230 ──────────────────────────────────────────────
+def puan_tablosu_guncelle(mac_no, mac_sonucu):
+    # mac_sonucu: 0=berabere, 1=rakip1 kazandi, 2=rakip2 kazandi
+    if mac_sonucu == 0:
+        puan_listesi[mac_rakip1[mac_no]] = puan_listesi.get(mac_rakip1[mac_no], 0) + 1
+        puan_listesi[mac_rakip2[mac_no]] = puan_listesi.get(mac_rakip2[mac_no], 0) + 1
+    elif mac_sonucu == 1:
+        puan_listesi[mac_rakip1[mac_no]] = puan_listesi.get(mac_rakip1[mac_no], 0) + 3
+    elif mac_sonucu == 2:
+        puan_listesi[mac_rakip2[mac_no]] = puan_listesi.get(mac_rakip2[mac_no], 0) + 3
+
+
+# ─── puan_tablosu_goster ──────────────────────────────────────────────
+def puan_tablosu_goster():
+    print("--- Puan Tablosu ---")
+    if not puan_listesi:
+        print("Henuz puan girilmedi.")
+        return
+    sirali = sorted(puan_listesi.items(), key=lambda x: x[1], reverse=True)
+    for i, (oyuncu, puan) in enumerate(sirali):
+        print(str(i + 1) + ". " + oyuncu + " - " + str(puan) + " puan")
+
+
+# ─── en_iyi_golcu ──────────────────────────────────────────────
+def en_iyi_golcu():
+    if not gol_listesi:
+        print("Henuz gol atilmadi.")
+        return
+    en_iyi = max(gol_listesi, key=gol_listesi.get)
+    print("En cok gol atan: " + en_iyi + " (" + str(gol_listesi[en_iyi]) + " gol)")
+
+
+# ─── kura_cek (menuden) ──────────────────────────────────────────────
+def kura_cek_menu():
+    oyuncu = kura_cek()
+    if oyuncu:
+        print("Kura sonucu: " + oyuncu)
+    else:
+        print("Oyuncu listesi bos.")
+
+
+# ─── 1018 ──────────────────────────────────────────────
+def oyuncu_arama_menu():
+    oyuncu_ismi = input("Aranacak oyuncunun adi: ")
+    for oyuncu in oyuncu_listesi:
+        if oyuncu_ismi == oyuncu:
+            print(oyuncu_ismi + " listede bulundu.")
+            return
+    print("Boyle bir oyuncu bulunamadi.")
+
+
+# ─── 1115 + 1240 ──────────────────────────────────────────────
+def turnuva_ozeti():
+    print("╔═══════════✦❖✦═══════════╗")
+    print("   ✦ ─── Turnuva Ozeti ─── ✦")
+    if not mac_rakip1:
+        print("   Henuz mac oynanmadi.")
+    else:
+        for i in range(len(mac_rakip1)):
+            r1 = mac_rakip1_gol[i]
+            r2 = mac_rakip2_gol[i]
+            sonuc = mac_rakip1[i] + " " + str(r1) + " - " + str(r2) + " " + mac_rakip2[i]
+            if r1 > r2:
+                sonuc += "  =>  " + mac_rakip1[i] + " kazandi"
+            elif r2 > r1:
+                sonuc += "  =>  " + mac_rakip2[i] + " kazandi"
+            else:
+                sonuc += "  =>  berabere"
+            print("   " + sonuc)
+    print("╚═══════════✦❖✦═══════════╝")
+    puan_tablosu_goster()
+    en_iyi_golcu()
+
+
+# ─── Ana Program ──────────────────────────────────────────────
+turnuva_logo()
+turnuva_giris()
+
+while True:
+    menu_goster()
+    secim = input("Seciminiz: ")
+
+    if secim == "1":
+        oyuncu_ekle()
+    elif secim == "2":
+        oyuncu_sil()
+    elif secim == "3":
+        oyuncu_guncelle()
+    elif secim == "4":
+        oyuncu_listesi_goster()
+    elif secim == "5":
+        eslestirmeleri_goster()
+    elif secim == "6":
+        puan_tablosu_goster()
+    elif secim == "7":
+        eslestirmeleri_olustur()
+    elif secim == "8":
+        puan_tablosu_guncelle(0, 0)
+        print("(Manuel guncelleme icin mac oynayin.)")
+    elif secim == "9":
+        en_iyi_golcu()
+    elif secim == "10":
+        mac_baslat()
+    elif secim == "11":
+        kura_cek_menu()
+    elif secim == "12":
+        oyuncu_arama_menu()
+    elif secim == "13":
+        turnuva_ozeti()
+    elif secim == "0":
+        print("Goruruz!")
+        break
+    else:
+        print("Gecersiz secim.")
