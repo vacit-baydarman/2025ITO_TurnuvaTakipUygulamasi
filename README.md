@@ -2,6 +2,8 @@
 
 **Python ile Turnuva Yönetimi — Öğrenci Projesi**
 
+<img width="905" height="222" alt="image" src="https://github.com/user-attachments/assets/24f322da-1515-44e7-a039-50e5c06909ab" />
+
 ---
 
 ## Proje Hakkında
