@@ -172,14 +172,14 @@ def oyuncu_guncelle():
     print("oyuncunuzun yeni adi: " + yeni_isim)
 
 
-# ─── 1018 ──────────────────────────────────────────────
+# ─── 1202 ──────────────────────────────────────────────
 def kura_cek():
     if not oyuncu_listesi:
         return None
     return random.choice(oyuncu_listesi)
 
 
-# ─── 1018 ──────────────────────────────────────────────
+# ─── 1210 ──────────────────────────────────────────────
 def eslestirmeleri_olustur():
     global mac_rakip1, mac_rakip2, mac_rakip1_gol, mac_rakip2_gol
     if len(oyuncu_listesi) < 2:
@@ -210,7 +210,7 @@ def eslestirmeleri_goster():
         print(str(i + 1) + ". Mac: " + mac_rakip1[i] + "  vs  " + mac_rakip2[i])
 
 
-# ─── Ahmet Zafer (gol animasyonu) ──────────────────────────────────────────────
+# ─── 1104 ──────────────────────────────────────────────
 def gol_animasyonu():
     print("")
     print("************************")
@@ -259,7 +259,7 @@ def gol_animasyonu():
     print("")
 
 
-# ─── skor_güncelle (no number - duzeltildi) ────────────────────────────
+# ─── 1143 ────────────────────────────
 def skor_guncelle(mac_index, atan_taraf):
     # atan_taraf: 1 = rakip1, 2 = rakip2
     if atan_taraf == 1:
@@ -344,7 +344,7 @@ def puan_tablosu_guncelle(mac_no, mac_sonucu):
         puan_listesi[mac_rakip2[mac_no]] = puan_listesi.get(mac_rakip2[mac_no], 0) + 3
 
 
-# ─── puan_tablosu_goster ──────────────────────────────────────────────
+# ─── 1233 ──────────────────────────────────────────────
 def puan_tablosu_goster():
     print("--- Puan Tablosu ---")
     if not puan_listesi:
@@ -355,7 +355,7 @@ def puan_tablosu_goster():
         print(str(i + 1) + ". " + oyuncu + " - " + str(puan) + " puan")
 
 
-# ─── en_iyi_golcu ──────────────────────────────────────────────
+# ─── 1267 ──────────────────────────────────────────────
 def en_iyi_golcu():
     if not gol_listesi:
         print("Henuz gol atilmadi.")
@@ -383,7 +383,7 @@ def oyuncu_arama_menu():
     print("Boyle bir oyuncu bulunamadi.")
 
 
-# ─── 1115 + 1240 ──────────────────────────────────────────────
+# ─── 1240 + 1115 ──────────────────────────────────────────────
 def turnuva_ozeti():
     print("╔═══════════✦❖✦═══════════╗")
     print("   ✦ ─── Turnuva Ozeti ─── ✦")
