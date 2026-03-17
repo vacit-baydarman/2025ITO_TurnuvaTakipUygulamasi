@@ -17,22 +17,26 @@ Proje **Programiz Online Python Compiler** üzerinde çalışmaktadır:
 
 Her öğrenci bir ya da birden fazla fonksiyon geliştirmiştir. İsimler aşağıya eklenecektir:
 
-| Okul No | Öğrenci Adı       | Geliştirdiği Fonksiyon                        |
-|---------|-------------------|-----------------------------------------------|
-| 1254    | _______________   | `turnuva_logo`, `menu_goster`                 |
-| 1161    | _______________   | `turnuva_giris`, `skor_goster`                |
-| 1009    | _______________   | `oyuncu_ekle`                                 |
-| 1115    | _______________   | `oyuncu_listesi_goster`, `turnuva_ozeti`      |
-| 1206    | _______________   | `oyuncu_sil`                                  |
-| 1238    | _______________   | `oyuncu_guncelle`                             |
-| 1071    | _______________   | `mac_baslat`, `oyuncu_guncelle` (katkı)       |
-| 1142    | _______________   | `eslestirmeleri_goster`                       |
-| 1018    | _______________   | `oyuncu_arama`, `eslestirmeleri_olustur`, `kura_cek` |
-| 1230    | _______________   | `puan_tablosu_guncelle`                       |
-| Ahmet Zafer | ___________   | `gol_animasyonu`                              |
-| 1240    | _______________   | `turnuva_ozeti` (katkı)                       |
+| Okul No | Öğrenci Adı/Soyadı        | Sınıf/Şube | Geliştirdiği Fonksiyon     | Katkı Sağladığı Fonksiyon |
+|--------|----------------------------|------------|-----------------------------|---------------------------|
+| 1233   | Muhammed Adem BAYDARMAN    | 5/B        | puan_tablosu_goster         |                           |
+| 1254   | Salih Emir GÖKDEMİR        | 5/B        | turnuva_logo, menu_goster   |                           |
+| 1161   | Mehmet Ali AYDIN           | 6/C        | turnuva_giris, skor_goster  |                           |
+| 1009   | Ahmet Yusuf ÇİNİCİ         | 7/B        | oyuncu_ekle                 |                           |
+| 1115   | Muhammed Emin UMAÇ         | 6/A        | oyuncu_listesi_goster       | turnuva_ozeti             |
+| 1206   | Aras Ege BAYTÖRE           | 5/A        | oyuncu_sil                  |                           |
+| 1238   | Muhammed Eymen SARI        | 5/B        | oyuncu_guncelle             |                           |
+| 1071   | Selim ŞANLI                | -          | mac_baslat                  | oyuncu_guncelle           |
+| 1142   | Ömer Faruk GÖÇ             | 6/B        | eslestirmeleri_goster       |                           |
+| 1018   | Enes Talha GÜLEN           | 7/C        | oyuncu_arama                |                           |
+| 1230   | Mete Yağız ÇAVUŞOĞLU       | 5/B        | puan_tablosu_guncelle       |                           |
+| 1104   | Ahmet Zafer YÜKSEL         | 6/A        | gol_animasyonu              |                           |
+| 1240   | Muhammed Yahya ODABAŞ      | 5/A        | turnuva_ozeti               |                           |
+| 1210   | Berzan ALKAN               | 5/A        | eslestirmeleri_olustur      |                           |
+| 1202   | Ali Burak AKBAŞ            | 5/C        | kura_cek                    |                           |
+| 1267   | Yiğit SARIYERLİOĞLU        | 5/C        | en_iyi_golcu                |                           |
+| 1143   | Ömer Kerem KINKAÇ          | -          | skor_guncelle               |                           |
 
-> Öğretmen notu: Boş bırakılan alanlara öğrencilerin adlarını ekleyebilirsiniz.
 
 ---
 
